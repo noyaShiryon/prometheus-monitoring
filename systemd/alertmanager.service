@@ -1,0 +1,19 @@
+[Unit]
+Description=Prometheus Alertmanager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=simple
+ExecStart=/usr/local/bin/alertmanager \
+  --config.file=/home/ubuntu/alertmanager-0.29.0.linux-amd64/alertmanager.yml \
+  --storage.path=/home/ubuntu/alertmanager-data \
+  --cluster.listen-address=127.0.0.1:9095 \
+  --web.listen-address=0.0.0.0:9093
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

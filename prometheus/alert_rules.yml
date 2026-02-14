@@ -1,0 +1,24 @@
+groups:
+  - name: instance_alerts
+    interval: 10s
+    rules:
+
+      # Alert when any instance is not responding
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} is down"
+          description: "{{ $labels.instance }} has been down for more than 1 minute."
+
+      # Alert when Node Exporter is not responding
+      - alert: NodeExporterDown
+        expr: up{job="node_exporters"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Node Exporter down on {{ $labels.instance }}"
+          description: "Node Exporter on {{ $labels.instance }} is not responding."
