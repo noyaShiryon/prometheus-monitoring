@@ -7,24 +7,24 @@ A production-ready uptime monitoring system built on AWS that automatically disc
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                        AWS VPC                          │
-│                                                         │
-│  ┌──────────────────────┐    ┌───────────────────────┐  │
-│  │    Public Subnet     │    │    Private Subnet     │  │
-│  │                      │    │                       │  │
-│  │  ┌────────────────┐  │    │  ┌─────────────────┐  │  │
-│  │  │   Prometheus   │◄─┼────┼──│  Node Exporter  │  │  │
-│  │  │   :9090        │  │    │  │  :9100          │  │  │
-│  │  │                │  │    └──┴─────────────────┘  │  │
-│  │  │  Alertmanager  │  │                             │  │
-│  │  │   :9093        │  │    ┌─────────────────────┐  │  │
-│  │  │                │  │    │  Node Exporter      │  │  │
-│  │  │ Discord Bridge │  │    │  :9100              │  │  │
-│  │  │   :9094        │  │    └─────────────────────┘  │  │
-│  │  └────────┬───────┘  │                             │  │
-│  └───────────┼──────────┘                             │  │
-└──────────────┼─────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                          AWS VPC                            │
+│                                                             │
+│  ┌──────────────────────┐    ┌─────────────────────────┐   │
+│  │    Public Subnet     │    │     Private Subnet      │   │
+│  │                      │    │                         │   │
+│  │  ┌────────────────┐  │    │  ┌───────────────────┐  │   │
+│  │  │   Prometheus   │◄─┼────┼──│  node-exporter-1  │  │   │
+│  │  │   :9090        │  │    │  │  :9100            │  │   │
+│  │  │                │◄─┼────┼──│                   │  │   │
+│  │  │  Alertmanager  │  │    │  │  node-exporter-2  │  │   │
+│  │  │   :9093        │  │    │  │  :9100            │  │   │
+│  │  │                │  │    │  └───────────────────┘  │   │
+│  │  │ Discord Bridge │  │    └─────────────────────────┘   │
+│  │  │   :9094        │  │                                  |
+│  │  └────────┬───────┘  │                                  │
+│  └───────────┼──────────┘                                  │
+└──────────────┼─────────────────────────────────────────────┘
                │
                ▼
           Discord Webhook
@@ -34,6 +34,11 @@ A production-ready uptime monitoring system built on AWS that automatically disc
 **Alerts flow:** Prometheus → Alertmanager → Discord Bridge → Discord
 
 ---
+## Screenshots
+
+![Prometheus Targets](screenshots/targets.png)
+![Prometheus Alerts](screenshots/alerts.png)
+![Discord Alert](screenshots/discord-alert.png)
 
 ## Tech Stack
 
