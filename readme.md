@@ -7,9 +7,9 @@ A production-ready uptime monitoring system built on AWS that automatically disc
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                          AWS VPC                            │
-│                                                             │
+┌────────────────────────────────────────────────────────────┐
+│                          AWS VPC                           │
+│                                                            │
 │  ┌──────────────────────┐    ┌─────────────────────────┐   │
 │  │    Public Subnet     │    │     Private Subnet      │   │
 │  │                      │    │                         │   │
