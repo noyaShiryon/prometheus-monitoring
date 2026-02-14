@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-DISCORD_WEBHOOK = "https://discord.com/api/webhooks/<YOUR-WEBHOOK-KEY>"
+DISCORD_WEBHOOK = "<YOUR_DISCORD_WEBHOOK_KEY>"
 
 def format_alert_for_discord(alert):
     status = alert.get('status', 'unknown')
